@@ -7,24 +7,26 @@
     <title>Portfolio | Richard Rae T. Estrella</title>
     <style>
         :root {
+            /* Light Mode (Default) */
             --bg: #f9fafb;
             --card-bg: #ffffff;
             --text-main: #111827;
             --text-muted: #6b7280;
             --accent: #2563eb;
             --border: #e5e7eb;
+            --switch-bg: #cbd5e1;
+            --icon-color: #6b7280;
         }
 
-        /* Simple Dark Mode Support */
-        @media (prefers-color-scheme: dark) {
-            :root {
-                --bg: #111827;
-                --card-bg: #1f2937;
-                --text-main: #f9fafb;
-                --text-muted: #9ca3af;
-                --accent: #60a5fa;
-                --border: #374151;
-            }
+        body.dark-mode {
+            --bg: #111827;
+            --card-bg: #1f2937;
+            --text-main: #f9fafb;
+            --text-muted: #9ca3af;
+            --accent: #60a5fa;
+            --border: #374151;
+            --switch-bg: #374151;
+            --icon-color: #9ca3af;
         }
 
         body {
@@ -36,9 +38,66 @@
             display: flex;
             justify-content: center;
             padding: 40px 20px;
-            transition: background 0.3s ease;
+            transition: background 0.3s ease, color 0.3s ease;
         }
 
+        /* --- Theme Toggle Styles --- */
+        .theme-switch-wrapper {
+            position: fixed;
+            top: 25px;
+            right: 25px;
+            z-index: 100;
+        }
+
+        .theme-switch {
+            position: relative;
+            display: inline-block;
+            width: 54px;
+            height: 28px;
+        }
+
+        .theme-switch input { opacity: 0; width: 0; height: 0; }
+
+        .slider {
+            position: absolute;
+            cursor: pointer;
+            top: 0; left: 0; right: 0; bottom: 0;
+            background-color: var(--switch-bg);
+            transition: .4s;
+            border-radius: 34px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 6px;
+            border: 1px solid var(--border);
+        }
+
+        .slider svg {
+            width: 16px;
+            height: 16px;
+            stroke: var(--icon-color);
+            z-index: 2;
+            transition: 0.3s;
+        }
+
+        .slider::before {
+            content: "";
+            position: absolute;
+            height: 20px;
+            width: 20px;
+            left: 4px;
+            bottom: 3px;
+            background-color: white;
+            transition: .4s;
+            border-radius: 50%;
+            z-index: 5;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+        }
+
+        input:checked + .slider::before { transform: translateX(24px); }
+        input:checked + .slider { background-color: var(--card-bg); }
+
+        /* --- Main UI Styles --- */
         .container {
             max-width: 600px;
             width: 100%;
@@ -47,22 +106,15 @@
             border-radius: 16px;
             box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
             border: 1px solid var(--border);
+            transition: background 0.3s ease, border 0.3s ease;
         }
 
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-        }
-
+        header { text-align: center; margin-bottom: 40px; }
         .profile-pic {
-            width: 100px;
-            height: 100px;
-            background: #e5e7eb;
+            width: 100px; height: 100px;
             border-radius: 50%;
             margin: 0 auto 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: block;
             border: 2px solid var(--accent);
             object-fit: cover;
         }
@@ -97,16 +149,7 @@
             box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
         }
 
-        .project-card:active {
-            transform: scale(0.98);
-        }
-
-        /* Shimmer Loading Effect for Future Projects */
-        .project-card.placeholder {
-            border-style: dashed;
-            cursor: pointer;
-        }
-
+        .project-card.placeholder { border-style: dashed; }
         .project-card.placeholder:hover {
             background: linear-gradient(90deg, var(--card-bg), var(--bg), var(--card-bg));
             background-size: 200% 100%;
@@ -121,24 +164,36 @@
         .project-name { font-weight: 600; font-size: 1rem; display: block; }
         .project-desc { font-size: 0.85rem; color: var(--text-muted); }
 
-        .links {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 20px;
-        }
-
-        .btn {
-            font-size: 0.9rem;
-            color: var(--accent);
-            text-decoration: none;
-            font-weight: 500;
-        }
-
+        .links { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+        .btn { font-size: 0.9rem; color: var(--accent); text-decoration: none; font-weight: 500; }
         .btn:hover { text-decoration: underline; }
     </style>
 </head>
 <body>
+
+    <div class="theme-switch-wrapper">
+        <label class="theme-switch" for="checkbox">
+            <input type="checkbox" id="checkbox" />
+            <div class="slider">
+                <!-- Sun Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <circle cx="12" cy="12" r="5"></circle>
+                    <line x1="12" y1="1" x2="12" y2="3"></line>
+                    <line x1="12" y1="21" x2="12" y2="23"></line>
+                    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                    <line x1="1" y1="12" x2="3" y2="12"></line>
+                    <line x1="21" y1="12" x2="23" y2="12"></line>
+                    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                </svg>
+                <!-- Moon Icon -->
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                </svg>
+            </div>
+        </label>
+    </div>
 
     <div class="container">
         <header>
@@ -146,7 +201,7 @@
             <h1>Richard Rae T. Estrella</h1>
             <p class="subtitle">Aspiring Web Developer specializing in clean, functional interfaces.</p>
             <div class="links">
-                <a href="https://github.com/Day-RRE-PH" class="btn">GitHub</a>
+                <a href="https://github.com/Day-RRE-PH" class="btn" target="_blank">GitHub</a>
                 <a href="#" class="btn">LinkedIn</a>
                 <a href="mailto:estrellarichardrae@gmail.com" class="btn">Email</a>
             </div>
@@ -165,7 +220,7 @@
         </a>
 
         <h2 class="section-title">Core Skills</h2>
-        <p class="project-desc">
+        <p class="project-desc" style="color: var(--text-main);">
             <strong>Frontend:</strong> HTML5, CSS3, JavaScript, React <br>
             <strong>Tools:</strong> Git, GitHub, VS Code, UI Design
         </p>
@@ -176,5 +231,28 @@
         </footer>
     </div>
 
+    <script>
+        const toggleSwitch = document.querySelector('#checkbox');
+        const currentTheme = localStorage.getItem('theme');
+
+        if (currentTheme) {
+            document.body.classList.add(currentTheme);
+            if (currentTheme === 'dark-mode') {
+                toggleSwitch.checked = true;
+            }
+        }
+
+        function switchTheme(e) {
+            if (e.target.checked) {
+                document.body.classList.add('dark-mode');
+                localStorage.setItem('theme', 'dark-mode');
+            } else {
+                document.body.classList.remove('dark-mode');
+                localStorage.setItem('theme', 'light-mode');
+            }    
+        }
+
+        toggleSwitch.addEventListener('change', switchTheme, false);
+    </script>
 </body>
 </html>
