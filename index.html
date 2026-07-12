@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="https://github.com/Day-RRE-PH.png">
-    <title>Portfolio | Richard Rae T. Estrella</title>
+    <title>WEBTEST</title>
     <style>
         :root {
             /* Light Mode (Default) */
@@ -167,6 +167,8 @@
         .links { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
         .btn { font-size: 0.9rem; color: var(--accent); text-decoration: none; font-weight: 500; }
         .btn:hover { text-decoration: underline; }
+
+        .badge-wrap { display: flex; justify-content: center; margin-top: 10px; }
     </style>
 </head>
 <body>
@@ -202,7 +204,7 @@
             <p class="subtitle">Aspiring Web Developer specializing in clean, functional interfaces.</p>
             <div class="links">
                 <a href="https://github.com/Day-RRE-PH" class="btn" target="_blank">GitHub</a>
-                <a href="#" class="btn">LinkedIn</a>
+                <a href="https://www.linkedin.com/in/rr-estrella13" class="btn" target="_blank">LinkedIn</a>
                 <a href="mailto:estrellarichardrae@gmail.com" class="btn">Email</a>
             </div>
         </header>
@@ -225,12 +227,18 @@
             <strong>Tools:</strong> Git, GitHub, VS Code, UI Design
         </p>
 
+        <h2 class="section-title">Connect</h2>
+        <div class="badge-wrap">
+            <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="richard-rae-estrella-4a857a421" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://ph.linkedin.com/in/richard-rae-estrella-4a857a421?trk=profile-badge">Richard Rae Estrella</a></div>
+        </div>
+
         <footer style="margin-top: 50px; text-align: center; font-size: 0.7rem; color: var(--text-muted);">
             &copy; 2026 Richard Rae T. Estrella. <br> 
             Built with 100% clean code.
         </footer>
     </div>
 
+    <script src="https://platform.linkedin.com/badges/js/profile.js" async defer type="text/javascript"></script>
     <script>
         const toggleSwitch = document.querySelector('#checkbox');
         const currentTheme = localStorage.getItem('theme');
