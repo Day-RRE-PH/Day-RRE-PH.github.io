@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="icon" type="image/png" href="https://github.com/Day-RRE-PH.png">
-    <title>WEBTEST</title>
+    <title>Portfolio | Richard Rae T. Estrella</title>
     <style>
         :root {
             /* Light Mode (Default) */
@@ -164,11 +164,39 @@
         .project-name { font-weight: 600; font-size: 1rem; display: block; }
         .project-desc { font-size: 0.85rem; color: var(--text-muted); }
 
-        .links { display: flex; gap: 15px; justify-content: center; margin-top: 20px; }
+        .links { display: flex; gap: 15px; justify-content: center; align-items: center; margin-top: 20px; }
         .btn { font-size: 0.9rem; color: var(--accent); text-decoration: none; font-weight: 500; }
         .btn:hover { text-decoration: underline; }
 
-        .badge-wrap { display: flex; justify-content: center; margin-top: 10px; }
+        .li-wrap {
+            position: relative;
+            display: inline-flex;
+            align-items: center;
+        }
+
+        .li-popup {
+            position: absolute;
+            top: 130%;
+            left: 50%;
+            transform: translateX(-50%) translateY(6px);
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+            transition: opacity 0.2s ease, transform 0.2s ease;
+            background: var(--card-bg);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            z-index: 50;
+        }
+
+        .li-wrap:hover .li-popup {
+            opacity: 1;
+            visibility: visible;
+            pointer-events: auto;
+            transform: translateX(-50%) translateY(0);
+        }
     </style>
 </head>
 <body>
@@ -204,7 +232,12 @@
             <p class="subtitle">Aspiring Web Developer specializing in clean, functional interfaces.</p>
             <div class="links">
                 <a href="https://github.com/Day-RRE-PH" class="btn" target="_blank">GitHub</a>
-                <a href="https://www.linkedin.com/in/rr-estrella13" class="btn" target="_blank">LinkedIn</a>
+                <span class="li-wrap">
+                    <a href="https://www.linkedin.com/in/rr-estrella13" class="btn" target="_blank">LinkedIn</a>
+                    <div class="li-popup">
+                        <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="richard-rae-estrella-4a857a421" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://ph.linkedin.com/in/richard-rae-estrella-4a857a421?trk=profile-badge">Richard Rae Estrella</a></div>
+                    </div>
+                </span>
                 <a href="mailto:estrellarichardrae@gmail.com" class="btn">Email</a>
             </div>
         </header>
@@ -226,11 +259,6 @@
             <strong>Frontend:</strong> HTML5, CSS3, JavaScript, React <br>
             <strong>Tools:</strong> Git, GitHub, VS Code, UI Design
         </p>
-
-        <h2 class="section-title">Connect</h2>
-        <div class="badge-wrap">
-            <div class="badge-base LI-profile-badge" data-locale="en_US" data-size="medium" data-theme="light" data-type="VERTICAL" data-vanity="richard-rae-estrella-4a857a421" data-version="v1"><a class="badge-base__link LI-simple-link" href="https://ph.linkedin.com/in/richard-rae-estrella-4a857a421?trk=profile-badge">Richard Rae Estrella</a></div>
-        </div>
 
         <footer style="margin-top: 50px; text-align: center; font-size: 0.7rem; color: var(--text-muted);">
             &copy; 2026 Richard Rae T. Estrella. <br> 
